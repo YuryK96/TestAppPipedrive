@@ -1,0 +1,75 @@
+
+.container-deals {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+}
+
+.container-deals form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.deal-wrapper {
+    display: flex;
+    gap: 15px;
+}
+
+.input-wrapper {
+    display: flex;
+
+    input, select {
+        width: 50%;
+    }
+}
+
+.container-deals input,
+.container-deals textarea,
+.container-deals select {
+    margin: 0 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+.container-deal {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 350px;
+    height: 250px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
+
+    textarea {
+        height: 30%
+    }
+}
+
+.container-deal h1 {
+    margin-bottom: 5px;
+    margin-left: 10px;
+    font-size: 25px;
+}
+
+.deals-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+
+    button {
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 20px;
+        border: none;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    #id-button {
+        background: gold;
+    }
+}

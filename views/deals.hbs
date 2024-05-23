@@ -1,0 +1,86 @@
+<div class="container-deals">
+
+    <form id="form-id" action="/" method="post">
+        <div class="deal-wrapper">
+
+            <div class="container-deal">
+                <h1>Client details</h1>
+                <div class="input-wrapper"><input name="name" placeholder="Name" type="text"/>
+                    <input name="surname" placeholder="Last Name" type="text"/></div>
+                <input name="tel" placeholder="tel" type="tel" oninput="validatePhoneNumber(this)"/>
+                <input name="email" placeholder="Email" type="email"/>
+            </div>
+
+            <div class="container-deal">
+                <h1>Job type</h1>
+                <select name="jobType">
+                    <option value="" selected
+                    >Select job type
+                    </option>
+                    <option value="Type 1">Type 1</option>
+                    <option value="Type 2">Type 2</option>
+                    <option value="Type 3">Type 3</option>
+                </select>
+                <select name="jobSource">
+                    <option value="" selected
+                    >Select subtype
+                    </option>
+                    <option value="Type 1">Type 1</option>
+                    <option value="Type 2">Type 2</option>
+                    <option value="Type 3">Type 3</option>
+                </select>
+                <textarea name="jobDescription" placeholder="Job Description (optional)" type="text"></textarea>
+            </div>
+        </div>
+
+
+        <div class="deal-wrapper">
+
+            <div class="container-deal">
+                <h1>Service Location</h1>
+                <input required name="address" placeholder="address" type="text"/>
+                <input name="location" placeholder="City" type="text"/>
+                <input name="street" placeholder="State" type="text"/>
+                <div class="input-wrapper"><input name="postCode" type="number"/>
+                    <select name="district">
+                        <option value="" selected
+                        >Select
+                        </option>
+                        <option value="Type 1">Type 1</option>
+                        <option value="Type 2">Type 2</option>
+                        <option value="Type 3">Type 3</option>
+                    </select></div>
+
+            </div>
+
+            <div class="container-deal">
+                <h1>Scheduled</h1>
+                <input name="date" type="date"/>
+                <div class="input-wrapper"><input name="fromTime" type="time"/>
+                    <input name="toTime" type="time"/></div>
+
+                <select name="person">
+                    <option value="" selected
+                    >Select technician
+                    </option>
+                    <option value="Type 1">person 1</option>
+                    <option value="Type 2">person 2</option>
+                    <option value="Type 3">person 3</option>
+                </select></div>
+
+        </div>
+
+
+        <div class="deals-buttons">
+            <button id="id-button" type="submit">Create job</button>
+            <button type="button">Save info</button>
+        </div>
+
+
+    </form>
+</div>
+<script>
+    function validatePhoneNumber(input) {
+        input.value = input.value.replace(/[^0-9()\s-]/g, '');
+    }
+</script>

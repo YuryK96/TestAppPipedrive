@@ -1,0 +1,17 @@
+
+.container-outcome {
+
+    button {
+        background: none;
+        border: none;
+        color: blue;
+        font: inherit;
+        cursor: pointer;
+        padding: 0;
+        text-decoration: underline;
+    }
+    #button-viewDeal-id{
+        text-decoration: underline;
+        color: inherit;
+    }
+}
