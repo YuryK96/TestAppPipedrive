@@ -40,7 +40,6 @@ passport.use(
                 accessToken,
                 refreshToken
             );
-
             done(null, {user});
         }
     )
@@ -68,29 +67,31 @@ app.get(
 );
 
 
-app.get("/",  (req, res) => {
-    if (req.user.length < 1) {
+app.get("/", (req, res) => {
+    if (!req.user) {
         return res.redirect("/auth/pipedrive");
     }
 
-        res.render("deals");
+    res.render("deals");
 });
 
 app.post("/", upload.any(), async (req, res) => {
-    if (req.user.length < 1) {
+    if (!req.user) {
         return res.redirect("/auth/pipedrive");
     }
 
     const newTitle = "Job # " + Date.parse(new Date())
     const deal = req.body
     try {
-        const newDeal = await api.addDeal(newTitle, req.user[0].access_token);
+
+        const user = await User.getById(req.query.userId)
+        const newDeal = await api.addDeal(newTitle, user.access_token);
 
         await Deals.addDeal({...deal, userId: newDeal.data.user_id.id, dealId: newDeal.data.id})
 
-        await api.addNote(`New Job was created ${newTitle}` ,newDeal.data.id,req.user[0].access_token)
+        await api.addNote(`New Job was created ${newTitle}`, newDeal.data.id, user.access_token)
 
-        return res.render("outcome",{dealTitle: newDeal.data.title, newDealId: newDeal.data.id});
+        return res.render("outcome", {dealTitle: newDeal.data.title, newDealId: newDeal.data.id});
 
     } catch (error) {
         console.log(error);
@@ -100,7 +101,7 @@ app.post("/", upload.any(), async (req, res) => {
 })
 
 app.get("/details", async (req, res) => {
-    if (req.user.length < 1) {
+    if (!req.user) {
         return res.redirect("/auth/pipedrive");
     }
 
@@ -111,7 +112,7 @@ app.get("/details", async (req, res) => {
         const deal = await Deals.getDealByIds(userId, dealId)
         const dealDetails = Mapper.mapDeal(deal)
 
-        res.render("dealDetails", {deal: dealDetails} );
+        res.render("dealDetails", {deal: dealDetails});
     } catch (error) {
         console.log(error);
         return res.send("Failed to get deal");

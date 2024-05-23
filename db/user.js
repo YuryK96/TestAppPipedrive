@@ -18,14 +18,14 @@ async function createTable() {
 }
 
 async function getById(id) {
-    const user = await Knex.from('users').select().where('userId', id);
+    const user = await Knex.from('users').select().where('userId', id).first();
 
     return user;
 }
 
 async function add(username, userId, access_token, refresh_token) {
     const isExistUser = await getById(userId)
-    if (isExistUser.length) {
+    if (isExistUser) {
         return
     }
 
