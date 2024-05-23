@@ -82,8 +82,7 @@ app.post("/", upload.any(), async (req, res) => {
     const newTitle = "Job # " + Date.parse(new Date())
     const deal = req.body
     try {
-
-        const user = await User.getById(req.headers['userId'])
+        const user = await User.getById(req.headers['userid'])
         const newDeal = await api.addDeal(newTitle, user.access_token);
 
         await Deals.addDeal({...deal, userId: newDeal.data.user_id.id, dealId: newDeal.data.id})
