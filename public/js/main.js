@@ -9,8 +9,9 @@ document.getElementById("form-id").addEventListener("submit", async (event) => {
     button.innerText = "Request is Sent"
 
     const formData = new FormData(event.target);
+    const userId = event.target.dataset.btnId
 
-    await sendFormData(formData, event.target.action, event.target.method).then(html => {
+    await sendFormData(formData, event.target.action, event.target.method,userId).then(html => {
         document.body.innerHTML = html;
 
         document.getElementById("button-viewDeal-id").addEventListener("click", async (event) => {

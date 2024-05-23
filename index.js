@@ -71,8 +71,7 @@ app.get("/", (req, res) => {
     if (!req.user) {
         return res.redirect("/auth/pipedrive");
     }
-
-    res.render("deals");
+    res.render("deals",{userId: req.query.userId});
 });
 
 app.post("/", upload.any(), async (req, res) => {
@@ -84,7 +83,7 @@ app.post("/", upload.any(), async (req, res) => {
     const deal = req.body
     try {
 
-        const user = await User.getById(req.query.userId)
+        const user = await User.getById(req.headers['userId'])
         const newDeal = await api.addDeal(newTitle, user.access_token);
 
         await Deals.addDeal({...deal, userId: newDeal.data.user_id.id, dealId: newDeal.data.id})
